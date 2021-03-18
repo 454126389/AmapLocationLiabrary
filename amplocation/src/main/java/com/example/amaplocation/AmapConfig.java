@@ -56,6 +56,7 @@ public class AmapConfig implements AMapLocationListener {
     /**
      * 通知栏
      */
+    @Keep
     public static Notification notification;
     /**
      * 回调监听监听
@@ -151,7 +152,7 @@ public class AmapConfig implements AMapLocationListener {
         this.sumDistance_m = sumDistance_m;
     }
 
-
+    @Keep
     public boolean isIs_trace_started() {
         return is_trace_started;
     }
@@ -402,6 +403,7 @@ public class AmapConfig implements AMapLocationListener {
      * @param disStr
      * @return
      */
+    @Keep
     public Notification creatNotification(String timeStr,String disStr){
         Notification notification = NotificationBuildUtil.showNotification(UtilsContextOfAmap.getContext(),
                 timeStr,disStr,startClass,resIdIcon);

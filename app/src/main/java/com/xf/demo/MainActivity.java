@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity  {
         amapConfig.initLocation();
         //开始定位
         amapConfig.startLocation();
+
     }
 
     //权限检测
