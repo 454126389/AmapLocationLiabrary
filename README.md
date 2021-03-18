@@ -1,9 +1,19 @@
 
 整合网上各路大神思路,汇总成一个到android 10为止还可正常后台定位的定位工具类,仅为自己整合学习，不稳定维护
 
-### 引入依赖库后
+### 引入依赖库
 ```
-
+    项目build.gradle里
+    allprojects {
+    		repositories {
+    			...
+    			maven { url 'https://jitpack.io' }
+    		}
+    	}
+    模块build.gradle里
+    dependencies {
+    	        implementation 'com.gitee.kjxweb:AmapLocationLiabrary:Tag'
+    	}
 ```
 #### 1.在高德API后台申请地图key
 
@@ -22,6 +32,7 @@
               android:exported="false"
               android:foregroundServiceType="location"
               />
+
 ```
 #### 3.AndroidManifest注册权限权限
 ```
@@ -84,4 +95,6 @@
 ```
 #### 5.具体使用参照demo
 
+    建议在Application里初始化
+    UtilsContextOfAmap.init(this);
 

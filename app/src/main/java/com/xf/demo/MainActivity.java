@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity  {
         rxPermissions.requestEach(permissions)
                 .subscribe(permission -> {
                     if (permission.granted) {
-//                        initGaodeMap();
+
 
                     } else if (permission.shouldShowRequestPermissionRationale) {
                         boolean fineLocationPermissionApproved =

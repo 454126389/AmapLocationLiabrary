@@ -60,10 +60,10 @@ public class AmapConfig implements AMapLocationListener {
     /**
      * 回调监听监听
      */
-    private OnGaodeLibraryListen.DistanceListen distanceListen;
-    private OnGaodeLibraryListen.LocationListen locationListen;
-    private OnGaodeLibraryListen.NotificationListen notificationListen;
-    private OnGaodeLibraryListen.DrawTraceListen drawTraceListen;
+    private OnAmapLibraryListen.DistanceListen distanceListen;
+    private OnAmapLibraryListen.LocationListen locationListen;
+    private OnAmapLibraryListen.NotificationListen notificationListen;
+    private OnAmapLibraryListen.DrawTraceListen drawTraceListen;
 
     /**
      * 锁屏相关
@@ -75,20 +75,20 @@ public class AmapConfig implements AMapLocationListener {
     private boolean isRegisterReceiver = false;
     private Intent serviceIntent = null;
     @Keep
-    public void setDistanceListen(OnGaodeLibraryListen.DistanceListen distanceListen) {
+    public void setDistanceListen(OnAmapLibraryListen.DistanceListen distanceListen) {
         this.distanceListen = distanceListen;
     }
 
     @Keep
-    public void setLocationListen(OnGaodeLibraryListen.LocationListen locationListen) {
+    public void setLocationListen(OnAmapLibraryListen.LocationListen locationListen) {
         this.locationListen = locationListen;
     }
     @Keep
-    public void setNotificationListen(OnGaodeLibraryListen.NotificationListen notificationListen) {
+    public void setNotificationListen(OnAmapLibraryListen.NotificationListen notificationListen) {
         this.notificationListen = notificationListen;
     }
     @Keep
-    public void setDrawTraceListen(OnGaodeLibraryListen.DrawTraceListen drawTraceListen) {
+    public void setDrawTraceListen(OnAmapLibraryListen.DrawTraceListen drawTraceListen) {
         this.drawTraceListen = drawTraceListen;
     }
 
@@ -260,7 +260,7 @@ public class AmapConfig implements AMapLocationListener {
 
         if (aMapLocation != null) {
             if(locationListen != null){
-                locationListen.getCurrentGaodeLocation(aMapLocation);
+                locationListen.getCurrentAmapLocation(aMapLocation);
 
             }
             show(aMapLocation,"");
@@ -429,7 +429,7 @@ public class AmapConfig implements AMapLocationListener {
     /**
      * 开启高德地图记录轨迹
      */
-    private void startGaodeService() {
+    private void startAmapService() {
         // 开启监听service(前台服务)
         AmapBackGroundService.isCheck = true;
         AmapBackGroundService.isRunning = true;
@@ -443,7 +443,7 @@ public class AmapConfig implements AMapLocationListener {
 
     }
 
-    private void closeGaodeService(){
+    private void closeAmapService(){
         // 停止监听service
         AmapBackGroundService.isCheck = false;
         AmapBackGroundService.isRunning = false;
@@ -463,7 +463,7 @@ public class AmapConfig implements AMapLocationListener {
         }
         registerLocationReceiver();
         if (!AmapBackGroundService.isRunning) {
-            startGaodeService();
+            startAmapService();
         }
         registerPowerReceiver();
 
@@ -478,7 +478,7 @@ public class AmapConfig implements AMapLocationListener {
         if (hasRegAlarm) {
             unregisterLocationReceiver();
         }
-        closeGaodeService();
+        closeAmapService();
         unregisterPowerReceiver();
     }
 

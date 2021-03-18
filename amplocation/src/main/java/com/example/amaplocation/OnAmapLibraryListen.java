@@ -10,11 +10,11 @@ import com.amap.api.location.AMapLocation;
  * Created by BLiYing on 2018/6/3.
  */
 @Keep
-public interface OnGaodeLibraryListen {
+public interface OnAmapLibraryListen {
     @Keep
     interface LocationListen{
         @Keep
-        void getCurrentGaodeLocation(AMapLocation aMapLocation);
+        void getCurrentAmapLocation(AMapLocation aMapLocation);
 
     }
 
