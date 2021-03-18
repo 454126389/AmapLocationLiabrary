@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.amaplocation.AmapConfig;
+import com.example.amaplocation.PathSmoothTool;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 public class MainActivity extends AppCompatActivity  {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity  {
         //开始定位
         amapConfig.startLocation();
 
+        PathSmoothTool a=new PathSmoothTool();
     }
 
     //权限检测

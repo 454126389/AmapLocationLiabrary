@@ -1,6 +1,8 @@
 package com.example.amaplocation;
 
 
+import androidx.annotation.Keep;
+
 import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.model.LatLng;
 
@@ -22,6 +24,7 @@ public class PathSmoothTool {
     private float mThreshhold = 0.3f;
     private float mNoiseThreshhold = 10;
 
+    @Keep
     public PathSmoothTool(){
 
     }
