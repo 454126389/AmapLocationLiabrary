@@ -32,7 +32,7 @@ public class PathSmoothTool {
     public int getIntensity() {
         return mIntensity;
     }
-
+    @Keep
     public void setIntensity(int mIntensity) {
         this.mIntensity = mIntensity;
     }
@@ -54,6 +54,7 @@ public class PathSmoothTool {
      * @param originlist 原始轨迹list,list.size大于2
      * @return 优化后轨迹list
      */
+    @Keep
     public List<LatLng> pathOptimize(List<LatLng> originlist){
 
         List<LatLng> list = removeNoisePoint(originlist);//去噪
