@@ -4,15 +4,6 @@ import android.content.Context;
 import androidx.annotation.Keep;
 
 
-/**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 16/12/08
- *     desc  : Utils初始化相关
- *     全局
- * </pre>
- */
 @Keep
 public final class UtilsContextOfAmap {
 
