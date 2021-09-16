@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.xf.demo">
+    package="me.xf.demo">
 
 
 
@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.xf.demo.MainActivity"
+        <activity android:name=".MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
             android:value="e91b306f59162ad3d8771e2885dfbaf3" />
         <!-- 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
-        <service android:name="com.example.amaplocation.AmapBackGroundService"
+        <service android:name="me.kjx.amaplocation.AmapBackGroundService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="location"
