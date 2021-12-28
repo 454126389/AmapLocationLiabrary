@@ -157,6 +157,7 @@ public class AmapConfig implements AMapLocationListener {
         return is_trace_started;
     }
 
+    @Keep
     public void setIs_trace_started(boolean is_trace_started) {
         this.is_trace_started = is_trace_started;
     }
