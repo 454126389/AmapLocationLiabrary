@@ -17,8 +17,6 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.AMapLocationQualityReport;
-import com.amap.api.maps.MapsInitializer;
-import com.amap.api.maps.model.LatLng;
 
 /**
  * 高德地图实时轨迹记录类
@@ -67,22 +65,6 @@ public class AmapConfig implements AMapLocationListener {
     private OnAmapLibraryListen.LocationListen locationListen;
     private OnAmapLibraryListen.NotificationListen notificationListen;
     private OnAmapLibraryListen.DrawTraceListen drawTraceListen;
-
-    public void setShow(Boolean show) {
-        isShow = show;
-    }
-
-    public void setTest(Boolean test) {
-        isTest = test;
-    }
-
-    //显示定位点信息
-    private Boolean isShow=false;
-
-
-    //测试模式
-    private Boolean isTest=false;
-
 
     /**
      * 锁屏相关
@@ -202,11 +184,6 @@ public class AmapConfig implements AMapLocationListener {
      * @since 2.8.0
      */
     public void initLocation() {
-
-//        MapsInitializer.updatePrivacyShow(mContext,true,true);
-        MapsInitializer.updatePrivacyAgree(mContext,true);
-
-
         //初始化client
         locationClient = new AMapLocationClient(mContext.getApplicationContext());
         locationOption = getDefaultOption(5000);
@@ -282,25 +259,12 @@ public class AmapConfig implements AMapLocationListener {
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
 
-        //测试模式
-        if (isTest)
-        {
-            //测试数据
-            double lat = GPSUtil.randomLonLat(118.0527440760, 118.0542461131, 24.6165350169, 24.6171202688, "Lat");
-            double lon = GPSUtil.randomLonLat(118.0527440760, 118.0542461131, 24.6165350169, 24.6171202688, "Lon");
-            aMapLocation.setLatitude(lat);
-            aMapLocation.setLatitude(lon);
-            aMapLocation.setAddress("测试地址");
-            aMapLocation.setAccuracy(99);
-            locationListen.getCurrentAmapLocation(aMapLocation);
-
-        }else if (aMapLocation != null) {
+        if (aMapLocation != null) {
             if(locationListen != null){
                 locationListen.getCurrentAmapLocation(aMapLocation);
 
             }
-            if (isShow)
-                show(aMapLocation,"");
+            show(aMapLocation,"");
             /**
              * 距离回调
              */

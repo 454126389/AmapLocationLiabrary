@@ -1,7 +1,5 @@
 package me.kjx.amaplocation;
 
-import java.math.BigDecimal;
-
 /**火星坐标系 (GCJ-02) 与百度坐标系 (BD-09) 的互转
  * Created by macremote on 16/5/3.
  */
@@ -141,20 +139,4 @@ public class GPSUtil {
         return Double.valueOf(result);
     }
 
-
-    //范围随机经纬度
-    public static final Double randomLonLat(double MinLon, double MaxLon, double MinLat, double MaxLat,String type) {
-
-//    Random random = new Random();
-        BigDecimal db = new BigDecimal(Math.random() * (MaxLon - MinLon) + MinLon);
-        Double lon = Double.parseDouble(db.setScale(6, BigDecimal.ROUND_HALF_UP).toString());// 小数后6位
-        db = new BigDecimal(Math.random() * (MaxLat - MinLat) + MinLat);
-        Double lat = Double.parseDouble(db.setScale(6, BigDecimal.ROUND_HALF_UP).toString());
-//    return new LatLng(lat,lon);
-        if (type.equals("Lon")) {
-            return lon;
-        } else {
-            return lat;
-        }
-    }
 }
