@@ -204,7 +204,7 @@ public class AmapConfig implements AMapLocationListener {
     public void initLocation() {
 
 //        MapsInitializer.updatePrivacyShow(mContext,true,true);
-        MapsInitializer.updatePrivacyAgree(mContext,true);
+//        MapsInitializer.updatePrivacyAgree(mContext,true);
 
 
         //初始化client
