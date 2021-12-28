@@ -40,7 +40,7 @@ dependencies {
 
 //    implementation project(':amaplocationlibrary')
 //    implementation(name: 'AMapLocation_4.2.0_20180810', ext: 'aar')
-    implementation 'com.amap.api:3dmap:7.5.0'
+//    implementation 'com.amap.api:3dmap:7.5.0'
     implementation(name: 'rxpermission', ext: 'aar')
     implementation 'io.reactivex:rxjava:1.1.6'
 

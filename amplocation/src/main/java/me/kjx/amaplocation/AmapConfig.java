@@ -185,7 +185,11 @@ public class AmapConfig implements AMapLocationListener {
      */
     public void initLocation() {
         //初始化client
-        locationClient = new AMapLocationClient(mContext.getApplicationContext());
+        try {
+            locationClient = new AMapLocationClient(mContext.getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         locationOption = getDefaultOption(5000);
         //设置定位参数
         locationClient.setLocationOption(locationOption);
