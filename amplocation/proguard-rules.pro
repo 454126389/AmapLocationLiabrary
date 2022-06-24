@@ -28,10 +28,9 @@
 #-keep public class com.example.gaodelibrary.UtilsContextOfGaode{
 #  public static void init(***);
 #}
--keep public class com.amap.**{*;}
--keep public class com.autonavi.**{*;}
--keep public class com.loc.**{*;}
-
+-keep class com.amap.**{*;}
+-keep class com.autonavi.**{*;}
+-keep class com.loc.**{*;}
 #手动启用support keep注解
 #http://tools.android.com/tech-docs/support-annotations
 -dontskipnonpubliclibraryclassmembers
