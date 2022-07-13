@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements OnAmapLibraryList
 
         requestPermission();
 
-        AmapConfig amapConfig = new AmapConfig(this);
+        AmapConfig amapConfig = new AmapConfig(this,false,true);
         //初始化定位相关参数
         amapConfig.initLocation();
         //开始定位
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements OnAmapLibraryList
 
     @Override
     public void getCurrentAmapLocation(AMapLocation aMapLocation) {
-
+        Log.e("test",aMapLocation.getLatitude()+" "+aMapLocation.getLongitude());
     }
 
     @Override

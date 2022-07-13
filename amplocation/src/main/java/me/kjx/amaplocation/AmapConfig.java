@@ -17,6 +17,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.AMapLocationQualityReport;
+import com.amap.api.services.core.ServiceSettings;
 
 /**
  * 高德地图实时轨迹记录类
@@ -24,6 +25,8 @@ import com.amap.api.location.AMapLocationQualityReport;
 public class AmapConfig implements AMapLocationListener {
     private final static String TAG = AmapConfig.class.getName();
     private Context mContext;
+
+    private Boolean isShowLog=false;
 
     /**
      * 地图client
@@ -99,8 +102,21 @@ public class AmapConfig implements AMapLocationListener {
     private Class<?> startClass;
     private int resIdIcon;
     @Keep
-    public AmapConfig(Context context){
+    public AmapConfig(Context context,Boolean isShowLog,Boolean isNeedAggress){
         this.mContext = context;
+        this.isShowLog=isShowLog;
+        //兼容低版本没有这个类
+        if (isNeedAggress)
+        {
+            try {
+                //隐私政策合规
+                ServiceSettings.updatePrivacyShow(context, true, true);
+                ServiceSettings.updatePrivacyAgree(context,true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         initLocation();
     }
 
@@ -269,7 +285,9 @@ public class AmapConfig implements AMapLocationListener {
                 locationListen.getCurrentAmapLocation(aMapLocation);
 
             }
-            show(aMapLocation,"");
+            //是否显示日志
+            if (isShowLog)
+                show(aMapLocation,"");
             /**
              * 距离回调
              */
