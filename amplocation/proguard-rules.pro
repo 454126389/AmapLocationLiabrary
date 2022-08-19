@@ -178,6 +178,9 @@
 #忽略support包因为版本兼容产生的警告
 -dontwarn android.support.**
 
+-keep class com.loc.**{*;}
+-keep class com.amap.api.services.**{*;}
+
 
 
 

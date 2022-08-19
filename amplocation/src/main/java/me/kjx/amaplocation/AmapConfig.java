@@ -126,10 +126,23 @@ public class AmapConfig implements AMapLocationListener {
      * @param context
      */
     @Keep
-    public AmapConfig(Context context, Class<?> startClass, int resIdIcon) {
+    public AmapConfig(Context context, Class<?> startClass, int resIdIcon,Boolean isShowLog,Boolean isNeedAggress) {
         this.mContext = context;
         this.startClass = startClass;
         this.resIdIcon = resIdIcon;
+
+        this.isShowLog=isShowLog;
+        //兼容低版本没有这个类
+        if (isNeedAggress)
+        {
+            try {
+                //隐私政策合规
+                ServiceSettings.updatePrivacyShow(context, true, true);
+                ServiceSettings.updatePrivacyAgree(context,true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         init();
 
