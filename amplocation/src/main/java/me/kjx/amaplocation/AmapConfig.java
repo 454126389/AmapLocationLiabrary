@@ -106,7 +106,7 @@ public class AmapConfig implements AMapLocationListener {
         this.mContext = context;
         this.isShowLog=isShowLog;
         //兼容低版本没有这个类
-        if (isNeedAggress)
+/*        if (isNeedAggress)
         {
             try {
                 //隐私政策合规
@@ -115,7 +115,7 @@ public class AmapConfig implements AMapLocationListener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
         initLocation();
     }
@@ -133,7 +133,7 @@ public class AmapConfig implements AMapLocationListener {
 
         this.isShowLog=isShowLog;
         //兼容低版本没有这个类
-        if (isNeedAggress)
+/*        if (isNeedAggress)
         {
             try {
                 //隐私政策合规
@@ -142,7 +142,7 @@ public class AmapConfig implements AMapLocationListener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        }*/
 
         init();
 
