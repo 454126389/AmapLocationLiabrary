@@ -17,7 +17,7 @@ import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.AMapLocationQualityReport;
-import com.amap.api.services.core.ServiceSettings;
+import com.amap.api.maps.MapsInitializer;
 
 /**
  * 高德地图实时轨迹记录类
@@ -105,17 +105,20 @@ public class AmapConfig implements AMapLocationListener {
     public AmapConfig(Context context,Boolean isShowLog,Boolean isNeedAggress){
         this.mContext = context;
         this.isShowLog=isShowLog;
+
+        MapsInitializer.setApiKey("e91b306f59162ad3d8771e2885dfbaf3");
+
         //兼容低版本没有这个类
-/*        if (isNeedAggress)
+        if (isNeedAggress)
         {
             try {
                 //隐私政策合规
-                ServiceSettings.updatePrivacyShow(context, true, true);
-                ServiceSettings.updatePrivacyAgree(context,true);
+                MapsInitializer.updatePrivacyShow(context, true, true);
+                MapsInitializer.updatePrivacyAgree(context,true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
 
         initLocation();
     }
@@ -132,17 +135,20 @@ public class AmapConfig implements AMapLocationListener {
         this.resIdIcon = resIdIcon;
 
         this.isShowLog=isShowLog;
+
+        MapsInitializer.setApiKey("e91b306f59162ad3d8771e2885dfbaf3");
+
         //兼容低版本没有这个类
-/*        if (isNeedAggress)
+        if (isNeedAggress)
         {
             try {
                 //隐私政策合规
-                ServiceSettings.updatePrivacyShow(context, true, true);
-                ServiceSettings.updatePrivacyAgree(context,true);
+                MapsInitializer.updatePrivacyShow(context, true, true);
+                MapsInitializer.updatePrivacyAgree(context,true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }*/
+        }
 
         init();
 
