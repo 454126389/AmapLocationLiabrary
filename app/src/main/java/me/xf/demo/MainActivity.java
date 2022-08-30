@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements OnAmapLibraryList
         amapConfig.initLocation();
         //开始定位
         amapConfig.startLocation();
+        //添加监听
+        amapConfig.setLocationListen(this);
 
         PathSmoothTool a=new PathSmoothTool();
     }
@@ -81,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements OnAmapLibraryList
 
     @Override
     public void getDistance(double distance) {
-
+        Log.e("test","distance="+distance);
     }
 
     @Override

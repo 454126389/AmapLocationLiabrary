@@ -20,9 +20,9 @@
         </activity>
 
         <!--替换成你自己的KEY-->
-        <meta-data
+<!--        <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="e91b306f59162ad3d8771e2885dfbaf3" />
+            android:value="e91b306f59162ad3d8771e2885dfbaf3" />-->
         <!-- 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" />
         <service android:name="me.kjx.amaplocation.AmapBackGroundService"
