@@ -26,14 +26,14 @@ public final class UtilsContextOfAmap {
      * @param context 上下文
      */
     @Keep
-    public static void init(Context context,Boolean isShowLog,Boolean isNeedAggress) {
+    public static void init(Context context,Boolean isShowLog,Boolean isNeedAggress,String mapApiKey) {
         //传递整个app生命周期的上下文，避免内存泄露
         UtilsContextOfAmap.context = context.getApplicationContext();
 
         UtilsContextOfAmap.isShowLog=isShowLog;
 
         //初始化地图
-        String mapApiKey="e91b306f59162ad3d8771e2885dfbaf3";
+//        String mapApiKey="";
         MapsInitializer.setApiKey(mapApiKey);
         AMapLocationClient.setApiKey(mapApiKey);
         ServiceSettings.getInstance().setApiKey(mapApiKey);

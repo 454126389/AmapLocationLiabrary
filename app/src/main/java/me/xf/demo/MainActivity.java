@@ -18,11 +18,18 @@ import me.kjx.amaplocation.PathSmoothTool;
 import me.kjx.amaplocation.UtilsContextOfAmap;
 
 import com.amap.api.location.AMapLocation;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
-public class MainActivity extends AppCompatActivity implements OnAmapLibraryListen.DistanceListen, OnAmapLibraryListen.LocationListen, OnAmapLibraryListen.DrawTraceListen {
+public class MainActivity extends AppCompatActivity implements OnAmapLibraryListen.DistanceListen, OnAmapLibraryListen.LocationListen, OnAmapLibraryListen.DrawTraceListen, GeocodeSearch.OnGeocodeSearchListener {
 
     private String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_BACKGROUND_LOCATION};
+
+    GeocodeSearch geocoderSearch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnAmapLibraryList
 
         requestPermission();
 
-        UtilsContextOfAmap.init(this,true,true);
+        UtilsContextOfAmap.init(this,true,true,"e91b306f59162ad3d8771e2885dfbaf3");
 
 
         AmapConfig amapConfig = new AmapConfig();
@@ -43,6 +50,32 @@ public class MainActivity extends AppCompatActivity implements OnAmapLibraryList
         amapConfig.setLocationListen(this);
 
         PathSmoothTool a=new PathSmoothTool();
+
+
+        RegeocodeQuery query = new RegeocodeQuery(new LatLonPoint(24.610421, 118.04714), 200, GeocodeSearch.AMAP);
+
+
+        if (geocoderSearch==null)
+        {
+            try {
+                geocoderSearch = new GeocodeSearch(this);
+                geocoderSearch.setOnGeocodeSearchListener(this);
+            } catch (Exception e) {
+                Log.e("test","err="+e.toString());
+                e.printStackTrace();
+
+            }
+        }
+
+        if (geocoderSearch != null) {
+            Log.e("test","4");
+            geocoderSearch.getFromLocationAsyn(query);
+        }else
+            Log.e("test","geocoderSearch=null");
+
+        Log.e("test","3");
+
+
     }
 
     //权限检测
@@ -93,5 +126,15 @@ public class MainActivity extends AppCompatActivity implements OnAmapLibraryList
     @Override
     public void drawTrace() {
 
+    }
+
+    @Override
+    public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int i) {
+        Log.e("test","i1"+i);
+    }
+
+    @Override
+    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
+        Log.e("test","i2"+i);
     }
 }
