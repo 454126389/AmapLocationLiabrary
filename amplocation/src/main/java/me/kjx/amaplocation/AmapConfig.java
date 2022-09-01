@@ -18,11 +18,15 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.AMapLocationQualityReport;
 import com.amap.api.maps.MapsInitializer;
+import com.amap.api.services.core.ServiceSettings;
 
 /**
  * 高德地图实时轨迹记录类
  */
 public class AmapConfig implements AMapLocationListener {
+
+    private String mapApiKey="e91b306f59162ad3d8771e2885dfbaf3";
+
     private final static String TAG = AmapConfig.class.getName();
     private Context mContext;
 
@@ -106,7 +110,14 @@ public class AmapConfig implements AMapLocationListener {
         this.mContext = context;
         this.isShowLog=isShowLog;
 
-        MapsInitializer.setApiKey("e91b306f59162ad3d8771e2885dfbaf3");
+
+
+//        MapsInitializer.setApiKey("e91b306f59162ad3d8771e2885dfbaf3");
+
+        MapsInitializer.setApiKey(mapApiKey);
+        AMapLocationClient.setApiKey(mapApiKey);
+        ServiceSettings.getInstance().setApiKey(mapApiKey);
+
 
         //兼容低版本没有这个类
         if (isNeedAggress)
@@ -115,6 +126,12 @@ public class AmapConfig implements AMapLocationListener {
                 //隐私政策合规
                 MapsInitializer.updatePrivacyShow(context, true, true);
                 MapsInitializer.updatePrivacyAgree(context,true);
+                //隐私政策合规
+                AMapLocationClient.updatePrivacyShow(context, true, true);
+                AMapLocationClient.updatePrivacyAgree(context,true);
+                //隐私政策合规
+                ServiceSettings.updatePrivacyShow(context, true, true);
+                ServiceSettings.updatePrivacyAgree(context,true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -136,7 +153,9 @@ public class AmapConfig implements AMapLocationListener {
 
         this.isShowLog=isShowLog;
 
-        MapsInitializer.setApiKey("e91b306f59162ad3d8771e2885dfbaf3");
+        MapsInitializer.setApiKey(mapApiKey);
+        AMapLocationClient.setApiKey(mapApiKey);
+        ServiceSettings.getInstance().setApiKey(mapApiKey);
 
         //兼容低版本没有这个类
         if (isNeedAggress)
@@ -145,6 +164,13 @@ public class AmapConfig implements AMapLocationListener {
                 //隐私政策合规
                 MapsInitializer.updatePrivacyShow(context, true, true);
                 MapsInitializer.updatePrivacyAgree(context,true);
+                //隐私政策合规
+                AMapLocationClient.updatePrivacyShow(context, true, true);
+                AMapLocationClient.updatePrivacyAgree(context,true);
+                //隐私政策合规
+                ServiceSettings.updatePrivacyShow(context, true, true);
+                ServiceSettings.updatePrivacyAgree(context,true);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -224,6 +250,7 @@ public class AmapConfig implements AMapLocationListener {
         try {
             locationClient = new AMapLocationClient(mContext.getApplicationContext());
         } catch (Exception e) {
+            Log.e("test","error="+e.toString());
             e.printStackTrace();
         }
         locationOption = getDefaultOption(5000);
