@@ -271,7 +271,7 @@ public class AmapConfig implements AMapLocationListener {
 
             }
             //是否显示日志
-            if (UtilsContextOfAmap.isShowLog)
+            if (UtilsContextOfAmap.getIsShowLog())
                 show(aMapLocation,"");
             /**
              * 距离回调

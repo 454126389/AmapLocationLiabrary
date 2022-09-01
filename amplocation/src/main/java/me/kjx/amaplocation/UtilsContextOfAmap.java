@@ -12,7 +12,8 @@ import com.amap.api.services.core.ServiceSettings;
 public final class UtilsContextOfAmap {
 
     private static Context context;
-    public static Boolean isShowLog;
+
+    private static Boolean isShowLog;
 
 
     private UtilsContextOfAmap() {
@@ -66,6 +67,11 @@ public final class UtilsContextOfAmap {
     public static Context getContext() {
         if (context != null) return context;
         throw new NullPointerException("u should init first");
+    }
+
+    @Keep
+    public static Boolean getIsShowLog() {
+        return isShowLog;
     }
 
 }
