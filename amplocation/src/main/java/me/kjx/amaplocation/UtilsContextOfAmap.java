@@ -3,11 +3,17 @@ package me.kjx.amaplocation;
 import android.content.Context;
 import androidx.annotation.Keep;
 
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.maps.MapsInitializer;
+import com.amap.api.services.core.ServiceSettings;
+
 
 @Keep
 public final class UtilsContextOfAmap {
 
     private static Context context;
+    public static Boolean isShowLog;
+
 
     private UtilsContextOfAmap() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -19,9 +25,36 @@ public final class UtilsContextOfAmap {
      * @param context 上下文
      */
     @Keep
-    public static void init(Context context) {
+    public static void init(Context context,Boolean isShowLog,Boolean isNeedAggress) {
         //传递整个app生命周期的上下文，避免内存泄露
         UtilsContextOfAmap.context = context.getApplicationContext();
+
+        UtilsContextOfAmap.isShowLog=isShowLog;
+
+        //初始化地图
+        String mapApiKey="e91b306f59162ad3d8771e2885dfbaf3";
+        MapsInitializer.setApiKey(mapApiKey);
+        AMapLocationClient.setApiKey(mapApiKey);
+        ServiceSettings.getInstance().setApiKey(mapApiKey);
+
+        //兼容低版本没有这个类
+        if (isNeedAggress)
+        {
+            try {
+                //隐私政策合规
+                MapsInitializer.updatePrivacyShow(context, true, true);
+                MapsInitializer.updatePrivacyAgree(context,true);
+                //隐私政策合规
+                AMapLocationClient.updatePrivacyShow(context, true, true);
+                AMapLocationClient.updatePrivacyAgree(context,true);
+                //隐私政策合规
+                ServiceSettings.updatePrivacyShow(context, true, true);
+                ServiceSettings.updatePrivacyAgree(context,true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     /**

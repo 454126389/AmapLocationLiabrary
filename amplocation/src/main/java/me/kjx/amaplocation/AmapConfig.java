@@ -25,13 +25,9 @@ import com.amap.api.services.core.ServiceSettings;
  */
 public class AmapConfig implements AMapLocationListener {
 
-    private String mapApiKey="e91b306f59162ad3d8771e2885dfbaf3";
+
 
     private final static String TAG = AmapConfig.class.getName();
-    private Context mContext;
-
-    private Boolean isShowLog=false;
-
     /**
      * 地图client
      */
@@ -106,75 +102,18 @@ public class AmapConfig implements AMapLocationListener {
     private Class<?> startClass;
     private int resIdIcon;
     @Keep
-    public AmapConfig(Context context,Boolean isShowLog,Boolean isNeedAggress){
-        this.mContext = context;
-        this.isShowLog=isShowLog;
-
-
-
-//        MapsInitializer.setApiKey("e91b306f59162ad3d8771e2885dfbaf3");
-
-        MapsInitializer.setApiKey(mapApiKey);
-        AMapLocationClient.setApiKey(mapApiKey);
-        ServiceSettings.getInstance().setApiKey(mapApiKey);
-
-
-        //兼容低版本没有这个类
-        if (isNeedAggress)
-        {
-            try {
-                //隐私政策合规
-                MapsInitializer.updatePrivacyShow(context, true, true);
-                MapsInitializer.updatePrivacyAgree(context,true);
-                //隐私政策合规
-                AMapLocationClient.updatePrivacyShow(context, true, true);
-                AMapLocationClient.updatePrivacyAgree(context,true);
-                //隐私政策合规
-                ServiceSettings.updatePrivacyShow(context, true, true);
-                ServiceSettings.updatePrivacyAgree(context,true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
+    public AmapConfig(){
         initLocation();
     }
 
     /**
      * 初始化相关参数
      *
-     * @param context
      */
     @Keep
-    public AmapConfig(Context context, Class<?> startClass, int resIdIcon,Boolean isShowLog,Boolean isNeedAggress) {
-        this.mContext = context;
+    public AmapConfig(Class<?> startClass, int resIdIcon) {
         this.startClass = startClass;
         this.resIdIcon = resIdIcon;
-
-        this.isShowLog=isShowLog;
-
-        MapsInitializer.setApiKey(mapApiKey);
-        AMapLocationClient.setApiKey(mapApiKey);
-        ServiceSettings.getInstance().setApiKey(mapApiKey);
-
-        //兼容低版本没有这个类
-        if (isNeedAggress)
-        {
-            try {
-                //隐私政策合规
-                MapsInitializer.updatePrivacyShow(context, true, true);
-                MapsInitializer.updatePrivacyAgree(context,true);
-                //隐私政策合规
-                AMapLocationClient.updatePrivacyShow(context, true, true);
-                AMapLocationClient.updatePrivacyAgree(context,true);
-                //隐私政策合规
-                ServiceSettings.updatePrivacyShow(context, true, true);
-                ServiceSettings.updatePrivacyAgree(context,true);
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
 
         init();
 
@@ -248,7 +187,7 @@ public class AmapConfig implements AMapLocationListener {
     public void initLocation() {
         //初始化client
         try {
-            locationClient = new AMapLocationClient(mContext.getApplicationContext());
+            locationClient = new AMapLocationClient(UtilsContextOfAmap.getContext());
         } catch (Exception e) {
             Log.e("test","error="+e.toString());
             e.printStackTrace();
@@ -332,7 +271,7 @@ public class AmapConfig implements AMapLocationListener {
 
             }
             //是否显示日志
-            if (isShowLog)
+            if (UtilsContextOfAmap.isShowLog)
                 show(aMapLocation,"");
             /**
              * 距离回调
@@ -564,14 +503,14 @@ public class AmapConfig implements AMapLocationListener {
         //动态注册一个广播
         IntentFilter filter = new IntentFilter();
         filter.addAction("LOCATION");
-        mContext.registerReceiver(locationReceiver, filter);
+        UtilsContextOfAmap.getContext().registerReceiver(locationReceiver, filter);
     }
 
     //解除定位广播
     private void unregisterLocationReceiver() {
         //动态注册一个广播
         hasRegAlarm = false;
-        mContext.unregisterReceiver(locationReceiver);
+        UtilsContextOfAmap.getContext().unregisterReceiver(locationReceiver);
     }
 
     //注册锁屏监听广播

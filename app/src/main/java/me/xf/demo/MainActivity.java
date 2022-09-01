@@ -15,6 +15,7 @@ import android.widget.Toast;
 import me.kjx.amaplocation.AmapConfig;
 import me.kjx.amaplocation.OnAmapLibraryListen;
 import me.kjx.amaplocation.PathSmoothTool;
+import me.kjx.amaplocation.UtilsContextOfAmap;
 
 import com.amap.api.location.AMapLocation;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -30,7 +31,10 @@ public class MainActivity extends AppCompatActivity implements OnAmapLibraryList
 
         requestPermission();
 
-        AmapConfig amapConfig = new AmapConfig(this,false,true);
+        UtilsContextOfAmap.init(this,true,true);
+
+
+        AmapConfig amapConfig = new AmapConfig();
         //初始化定位相关参数
         amapConfig.initLocation();
         //开始定位
